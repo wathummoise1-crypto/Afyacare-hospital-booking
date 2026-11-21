@@ -1,0 +1,14 @@
+{
+  "name": "afycare-hospital-booking",
+  "version": "1.0.0",
+  "description": "Hospital appointment booking system with MySQL database",
+  "main": "server.js",
+  "scripts": {"start": "node server.js", "dev": "node --watch server.js", "seed-admin": "node seed-admin.js"},
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.2",
+    "express-session": "^1.18.1",
+    "mysql2": "^3.11.5"
+  }
+}
