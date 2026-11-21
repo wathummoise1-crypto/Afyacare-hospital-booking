@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AfyaCare | Hospital Appointment System</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark">+</span><div><strong>AfyaCare</strong><small>Hospital Portal</small></div></div>
+      <div class="side-label">MENU</div>
+      <button class="nav-link active" data-view="dashboard">▦ <span>Dashboard</span></button>
+      <button class="nav-link" data-view="book">＋ <span>Book appointment</span></button>
+      <button class="nav-link" data-view="appointments">▤ <span>My appointments</span></button>
+      <div class="sidebar-bottom">
+        <div class="help-card"><strong>Need help?</strong><p>For emergencies, contact your nearest emergency unit.</p></div>
+        <button id="logoutBtn" class="logout-btn">↪ <span>Log out</span></button>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <div><p class="eyebrow">PATIENT PORTAL</p><h1 id="pageTitle">Dashboard</h1></div>
+        <div class="profile"><div class="avatar" id="avatar">P</div><div><strong id="userName">Patient</strong><small id="userRole">Patient account</small></div></div>
+      </header>
+
+      <section id="dashboardView" class="view">
+        <div class="welcome-banner">
+          <div><p class="eyebrow light">YOUR HEALTH, MADE SIMPLE</p><h2 id="welcomeText">Welcome back!</h2><p>Book appointments without waiting in long hospital queues.</p><button class="primary-btn" data-go="book">Book an appointment <span>→</span></button></div>
+          <div class="banner-icon">✚</div>
+        </div>
+        <div class="stats-grid">
+          <article class="stat-card"><div class="stat-icon blue">▤</div><div><span>Total appointments</span><strong id="totalCount">0</strong></div></article>
+          <article class="stat-card"><div class="stat-icon green">✓</div><div><span>Upcoming</span><strong id="upcomingCount">0</strong></div></article>
+          <article class="stat-card"><div class="stat-icon orange">◷</div><div><span>Pending requests</span><strong id="pendingCount">0</strong></div></article>
+        </div>
+        <div class="section-heading"><div><h2>Upcoming appointments</h2><p>Your next scheduled hospital visits</p></div><button class="text-btn" data-go="appointments">View all →</button></div>
+        <div id="dashboardAppointments" class="appointment-list"></div>
+      </section>
+
+      <section id="bookView" class="view hidden">
+        <div class="section-heading"><div><h2>Book a new appointment</h2><p>Choose a department, doctor and convenient time.</p></div></div>
+        <div class="form-card">
+          <form id="bookingForm">
+            <div class="form-grid">
+              <label>Patient full name<input id="patientName" required placeholder="Your full name" /></label>
+              <label>Phone number<input id="patientPhone" required type="tel" placeholder="e.g. 0712 345 678" /></label>
+              <label>Department<select id="department" required><option value="">Select department</option><option>General Medicine</option><option>Paediatrics</option><option>Dental Care</option><option>Eye Clinic</option><option>Maternity</option><option>Dermatology</option></select></label>
+              <label>Preferred doctor<select id="doctor" required><option value="">Select doctor</option><option>Dr. Amina Hassan</option><option>Dr. Brian Otieno</option><option>Dr. Grace Njeri</option><option>Dr. Daniel Mwangi</option></select></label>
+              <label>Appointment date<input id="appointmentDate" type="date" required /></label>
+              <label>Preferred time<select id="appointmentTime" required><option value="">Select time</option><option>08:00 AM</option><option>09:00 AM</option><option>10:00 AM</option><option>11:00 AM</option><option>01:00 PM</option><option>02:00 PM</option><option>03:00 PM</option><option>04:00 PM</option></select></label>
+              <label class="full-width">Reason for visit<textarea id="reason" rows="3" required placeholder="Briefly describe why you need an appointment"></textarea></label>
+            </div>
+            <div class="form-note">Please arrive 15 minutes before your appointment. This demo stores bookings in this browser only.</div>
+            <button class="primary-btn" type="submit">Confirm appointment <span>→</span></button>
+            <p id="bookingMessage" class="message" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+
+      <section id="appointmentsView" class="view hidden">
+        <div class="section-heading"><div><h2>My appointments</h2><p>Track and manage your appointment requests.</p></div><button class="primary-btn compact" data-go="book">＋ New booking</button></div>
+        <div id="allAppointments" class="appointment-list"></div>
+      </section>
+
+      <footer>AfyaCare Hospital Booking System · Student project prototype · Not for real medical emergencies</footer>
+    </main>
+  </div>
+
+  <div id="loginScreen" class="login-screen">
+    <div class="login-visual">
+      <div class="brand brand-light"><span class="brand-mark">+</span><div><strong>AfyaCare</strong><small>Hospital Portal</small></div></div>
+      <div class="visual-copy"><span class="eyebrow light">CARE WITHOUT THE QUEUE</span><h1>Healthcare appointments, made easier.</h1><p>Book a visit, choose your preferred time and keep your appointment details in one place.</p><div class="visual-points"><span>✓ Simple online booking</span><span>✓ Appointment tracking</span><span>✓ Less time waiting at reception</span></div></div>
+      <div class="visual-decoration">✚</div>
+    </div>
+    <div class="login-panel">
+      <div class="mobile-brand brand"><span class="brand-mark">+</span><div><strong>AfyaCare</strong><small>Hospital Portal</small></div></div>
+      <div class="login-box">
+        <p class="eyebrow">WELCOME TO AFYACARE</p><h2 id="authHeading">Sign in to your account</h2><p class="muted" id="authSub">Enter your details to continue to the patient portal.</p>
+        <form id="authForm">
+          <div id="nameField" class="hidden"><label>Full name<input id="registerName" placeholder="Your full name" /></label></div>
+          <label>Email address<input id="email" type="email" required placeholder="name@example.com" /></label>
+          <label>Password<input id="password" type="password" required minlength="6" placeholder="At least 6 characters" /></label>
+          <button class="primary-btn wide" id="authSubmit" type="submit">Sign in <span>→</span></button>
+          <p id="authMessage" class="message" aria-live="polite"></p>
+        </form>
+        <p class="switch-auth"><span id="switchText">Don't have an account?</span> <button id="switchAuth" type="button">Create account</button></p>
+        <div class="demo-hint"><strong>Demo access</strong><br/>Create a patient account, or sign in with <b>admin@afyacare.test</b> / <b>Admin123!</b></div>
+      </div>
+      <small class="login-foot">By continuing, you agree to use this student prototype responsibly.</small>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
